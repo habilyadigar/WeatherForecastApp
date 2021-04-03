@@ -1,0 +1,19 @@
+h1 {
+  color: gold;
+}
+
+.back {
+  background-color: grey;
+}
+
+img {
+  text-align: center;
+  height: 15%;
+  width: 15%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
