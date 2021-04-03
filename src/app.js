@@ -20,16 +20,16 @@ app.use(express.static(publicPathUrl));
 
 app.get("/", (req, res) => {
   res.render("index", {
-    title: "HOME PAGE",
+    title: "CURRENT WEATHER FORECAST",
   });
 });
-
+/*
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About PAGE",
   });
 });
-
+*/
 app.get("/current", (req, res) => {
   const address = req.query["address"];
   if (!address) {

@@ -1,5 +1,5 @@
 body {
-  background-color: green;
+  background-color: #fbc018;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,10 +7,6 @@ body {
 
 h1 {
   color: gold;
-}
-
-.back {
-  background-color: grey;
 }
 
 img {
