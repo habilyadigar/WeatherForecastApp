@@ -20,22 +20,21 @@ app.use(express.static(publicPathUrl));
 
 app.get("", (req, res) => {
   res.render("index", {
-    title: "Selam dostum",
+    title: "HOME PAGE",
   });
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
-    title: "About Sayfası",
+    title: "About PAGE",
   });
 });
 
-app.get("/forecast", (req, res) => {
+app.get("/current", (req, res) => {
   const address = req.query["address"];
   if (!address) {
-    console.log("Nereye bakayım yazmadın.");
     return res.send({
-      error: "Adres bilgisini girmediniz.",
+      error: "You must enter address.",
     });
     return;
   } else {
