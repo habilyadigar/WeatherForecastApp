@@ -18,7 +18,7 @@ hbs.registerPartials(partialsPathUrl);
 //public klasörünü servis et
 app.use(express.static(publicPathUrl));
 
-app.get("", (req, res) => {
+app.get("/", (req, res) => {
   res.render("index", {
     title: "HOME PAGE",
   });
@@ -36,22 +36,27 @@ app.get("/current", (req, res) => {
     return res.send({
       error: "You must enter address.",
     });
-    return;
   } else {
     const URL = `http://api.weatherstack.com/current?access_key=f008b681fdd3ffdbf2d82d720ed732c4&query=${address}`;
 
     request({ url: URL, json: true }, (err, response) => {
-      const {
-        weather_descriptions,
-        temperature,
-        feelslike,
-        wind_speed,
-      } = response.body.current;
-      console.log(response.body.current);
-      res.send({
-        address: req.query.address,
-        weather: `Today weather is ${weather_descriptions} and temperature is ${temperature} °C feels like ${feelslike}, wind speed ${wind_speed}, `,
-      });
+      const request = !response.body["request"];
+      if (request) {
+        res.send({
+          error: "CITY IS NOT FOUND",
+        });
+      } else {
+        const {
+          weather_descriptions,
+          temperature,
+          feelslike,
+          wind_speed,
+        } = response.body.current;
+        res.send({
+          address: req.query.address,
+          weather: `Today weather is ${weather_descriptions} and temperature is ${temperature} °C feels like ${feelslike}, wind speed ${wind_speed}, `,
+        });
+      }
     });
   }
 });
