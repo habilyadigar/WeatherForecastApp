@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="css/style.css" />
+
     {{!-- BOOTSTRAP --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -17,6 +17,7 @@
         crossorigin="anonymous"></script>
     {{!-- BOOTSTRAP --}}
 
+    <link rel="stylesheet" href="css/style.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
 </head>
 
 
-<body class="body">
+<body>
 
     <img src="img/weather.jpg" />
 
@@ -35,8 +36,44 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     <br />
-    <p id="p1"></p>
-    <p id="p2"></p>
+    <h3 style="padding-top : 20px" id="p1"></h3>
+    <br />
+    {{icon}}
+    <br />
+    <br />
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Temperature</th>
+                <th scope="col" id="temp"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Description</td>
+                <td id="desc"></td>
+            </tr>
+            <tr>
+                <td>Wind Speed</td>
+                <td id="windSpeed"></td>
+            </tr>
+            <tr>
+                <td>Feels Like</td>
+                <td id="feels"></td>
+            </tr>
+            <tr>
+                <td>UV Index</td>
+                <td id="UV"></td>
+            </tr>
+            <tr>
+                <td>Visibility</td>
+                <td id="visi"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
 
 
 

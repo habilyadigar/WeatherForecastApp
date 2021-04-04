@@ -1,15 +1,24 @@
 body {
-  background-color: #fbc018;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 h1 {
-  color: gold;
+  color: rgb(0, 0, 0);
 }
 
 img {
   height: 10%;
   width: 40%;
+}
+
+.table {
+  width: 80%;
+  max-width: 80%;
+}
+
+.table-bordered {
+  border: 2px solid #abb7c2;
 }

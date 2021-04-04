@@ -1,10 +1,14 @@
-console.log("OLUM YAZSANA ŞURAYA");
-
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search");
 
 const p1 = document.querySelector("#p1");
-const p2 = document.querySelector("#p2");
+const temp = document.querySelector("#temp");
+const desc = document.querySelector("#desc");
+const windSpeed = document.querySelector("#windSpeed");
+const feels = document.querySelector("#feels");
+const UV = document.querySelector("#UV");
+const visi = document.querySelector("#visi");
+//const icon = document.URL("#icon");
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -14,10 +18,15 @@ searchForm.addEventListener("submit", (e) => {
     response.json().then((data) => {
       if (data.error) {
         p1.textContent = `ERROR: ${data.error}`;
-        p2.textContent = "";
       } else {
-        p1.textContent = `City: ${data.address}`;
-        p2.textContent = `Weather: ${data.weather}`;
+        temp.textContent = `${data.weather["temperature"]} °C`;
+        desc.textContent = `${data.weather["weather_descriptions"]}`;
+        feels.textContent = `${data.weather["feelslike"]} °C`;
+        windSpeed.textContent = `${data.weather["wind_speed"]}`;
+        UV.textContent = `${data.weather["uv_index"]}`;
+        visi.textContent = `${data.weather["visibility"]}`;
+        p1.textContent = `${data.address}`;
+        //icon.textContent = data.weather["weather_icons"];
       }
     });
   });

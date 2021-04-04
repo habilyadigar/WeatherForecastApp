@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
 const request = require("request");
+require("dotenv").config();
+const ACCESS_KEY = process.env.ACCESS_KEY;
 
 const app = express();
 
@@ -20,7 +22,7 @@ app.use(express.static(publicPathUrl));
 
 app.get("/", (req, res) => {
   res.render("index", {
-    title: "CURRENT WEATHER FORECAST",
+    title: "CURRENT WEATHER INFORMATION",
   });
 });
 /*
@@ -30,6 +32,7 @@ app.get("/about", (req, res) => {
   });
 });
 */
+
 app.get("/current", (req, res) => {
   const address = req.query["address"];
   if (!address) {
@@ -37,24 +40,37 @@ app.get("/current", (req, res) => {
       error: "You must enter address.",
     });
   } else {
-    const URL = `http://api.weatherstack.com/current?access_key=f008b681fdd3ffdbf2d82d720ed732c4&query=${address}`;
+    const URL = `http://api.weatherstack.com/current?access_key=${ACCESS_KEY}&query=${address}`;
 
     request({ url: URL, json: true }, (err, response) => {
       const request = !response.body["request"];
+      //console.log(response);
       if (request) {
         res.send({
           error: "CITY IS NOT FOUND",
         });
       } else {
+        //console.log(response.body);
         const {
           weather_descriptions,
           temperature,
           feelslike,
           wind_speed,
+          uv_index,
+          visibility,
+          //weather_icons,
         } = response.body.current;
         res.send({
           address: req.query.address,
-          weather: `Today weather is ${weather_descriptions} and temperature is ${temperature} °C feels like ${feelslike}, wind speed ${wind_speed}, `,
+          weather: {
+            weather_descriptions,
+            temperature,
+            feelslike,
+            wind_speed,
+            uv_index,
+            visibility,
+            //weather_icons,
+          },
         });
       }
     });
